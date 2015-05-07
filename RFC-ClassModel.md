@@ -93,9 +93,9 @@ local function onEvent(...) -- define listener function
         -- do stuff with the other args(up to you ;) )
     end
 end
-local i = ehook:add(onEvent); -- your listener function will now be called everytime an event is pulled from the stack
+local i = ehook:attach(onEvent); -- your listener function will now be called everytime an event is pulled from the stack
 -- if you no longer wish to receive events, you can detach from the hook, or disable it
-ehook:remove(i); -- this will allow other listeners to continue receiving events
+ehook:detach(i); -- this will allow other listeners to continue receiving events
 ehook:disable(); -- this will disable event gathering for the whole evenhook, allowing no registered listener to receive events. (this will keep the listeners registered though, for later re-enabling)
 ```
 
@@ -170,7 +170,7 @@ local function onMessage(message) -- define your listener function
     -- here I get all messages received by interface
     print("Message received: ",message); -- would print out all received messages of the interface it's registered at
 end
-iface:add(onMessage); -- register your listener function. You will now get all messages of that interface
+iface:attach(onMessage); -- register your listener function. You will now get all messages of that interface
 iface.send("Hello, my name is Karsten"); -- this will send the message from that interface
 ```
 
