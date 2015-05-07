@@ -6,9 +6,10 @@ The idea of the daemon would be to run a background process that will manage con
 
 There are several requirements if this is to work properly:
 
-1. A kernel function that notifies specific apps 
+1. A kernel function that notifies specific apps  
+'code'
 
-'''lua
-Kernel.notify()
-'''
+'''lua  
+Kernel.notify()  
+'''  
 
