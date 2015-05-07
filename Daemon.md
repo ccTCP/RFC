@@ -19,13 +19,13 @@ local connection = ccTCP.new(protocol)
 
 The instance will then be used in this manner:
 
-1. Sending:
+* Sending:
 
 ```lua
 connection.send(receiver,message)
 ```
 
-2. Receiving:
+* Receiving:
 
 ```lua
 connection.receive([timeout?], otherDataWeHaveToSpecify)
