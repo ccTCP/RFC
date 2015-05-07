@@ -39,10 +39,9 @@ The Eventhook will inject itself into the computers event stack and allows for l
 local ehook = eventhook.new();
 ```
 
-
 ##### Functions
 
-###### enable
+###### eventhook.enable
 ```lua
 --enable(ehook)
 --  (Summary): Enables the eventhook to inject event stack
@@ -52,7 +51,7 @@ eventhook.enable(ehook);
 ehook:enable();
 ```
 
-###### disable
+###### eventhook.disable
 ```lua
 --disable(ehook)
 --  (Summary): Disinjects the eventhook disabling it to grab further events
@@ -62,27 +61,27 @@ eventhook.disable(ehook);
 ehook:disable();
 ```
 
-###### add
+###### eventhook.attach
 ```lua
---add(ehook, func)
---  (Summary): Adds a listener to that eventhook
+--attach(ehook, func)
+--  (Summary): Attaches a listener to that eventhook
 --  (1 parameter): eventhook instance(object)
 --  (2 parameter): listener function, that the eventhook will call, when modem_messages arrive
 --  (1 return): index position of that listener
-local listenerindex = eventhook.add(ehook, func);
+local listenerindex = eventhook.attach(ehook, func);
 --or
-local listenerindex = ehook:add(func);
+local listenerindex = ehook:attach(func);
 ```
 
-###### remove
+###### eventhook.detach
 ```lua
---remove(ehook, index)
---  (Summary): Removes a listener from that eventhook.
+--detach(ehook, index)
+--  (Summary): Detaches a listener from that eventhook.
 --  (1 parameter): eventhook instance(object)
 --  (2 parameter): index position of listener function
-eventhook.remove(ehook, listenerindex);
+eventhook.detach(ehook, listenerindex);
 --or
-ehook:remove(listenerindex);
+ehook:detach(listenerindex);
 ```
 
 ##### Usage
@@ -114,7 +113,7 @@ The interface is bound to a side, will inject itself into the computers event st
 local iface = interface.new("left", hookObj, false);
 ```
 ##### Functions
-###### enable
+###### interface.enable
 ```lua
 --enable(iface)
 --  (Summary): Enables the interface to listen for modem_messages
@@ -123,7 +122,7 @@ interface.enable(iface);
 --or
 iface:enable();
 ```
-###### disable
+###### interface.disable
 ```lua
 --disable(iface)
 --  (Summary): Disables the interface from listening to modem_messages
@@ -132,28 +131,28 @@ interface.disable(iface);
 --or
 iface:disable();
 ```
-###### add
+###### interface.attach
 ```lua
---add(iface, func)
---  (Summary): Adds a listener to that interface
+--attach(iface, func)
+--  (Summary): Attaches a listener to that interface
 --  (1 parameter): interface instance(object)
 --  (2 parameter): listener function, that the interface will call, when modem_messages arrive
 --  (1 return): index position of that listener
-local listenerindex = interface.add(iface, func);
+local listenerindex = interface.attach(iface, func);
 --or
-local listenerindex = iface:add(func);
+local listenerindex = iface:attach(func);
 ```
-###### remove
+###### interface.detach
 ```lua
---remove(iface, index)
---  (Summary): Removes a listener from that interface.
+--detach(iface, index)
+--  (Summary): Detaches a listener from that interface.
 --  (1 parameter): interface instance(object)
 --  (2 parameter): index position of listener function
-interface.remove(iface, listenerindex);
+interface.detach(iface, listenerindex);
 --or
-iface:remove(listenerindex);
+iface:detach(listenerindex);
 ```
-###### send
+###### interface.send
 ```lua
 --send(iface, message)
 --  (Summary): Sends a message from that interface
@@ -174,3 +173,32 @@ end
 iface:add(onMessage); -- register your listener function. You will now get all messages of that interface
 iface.send("Hello, my name is Karsten"); -- this will send the message from that interface
 ```
+
+#### Ethernet
+##### Constructor
+###### ethernet.new
+##### Functions
+###### ethernet.enable
+###### ethernet.disable
+###### ethernet.attach
+###### ethernet.detach
+###### ethernet.send
+##### Usage
+```lua
+local iface = interface.new(...); -- see above on how to create your interface
+local ether = ethernet.new(iface); -- create instance of ethernet protocol node(auto enabled)
+local function onFrame(frame) -- define your listener function
+    -- here you can handle all frames coming to this ether node(basically to that interface)
+end
+local index = ether:attach(onFrame); -- this will attach your listener function to that ethernet node
+ether:detach(index); -- detaches your listener, without closing the node
+ether:disable(); -- disables the node completely, remembering all listeners for later re-enable
+```
+#### PPPoE
+##### Constructor
+###### pppoe.new
+##### Functions
+#### PPP
+#### IPv4
+#### TCP
+#### UDP
