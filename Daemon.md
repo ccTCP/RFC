@@ -8,9 +8,9 @@ There are several requirements if this is to work properly:
 
 1. A kernel function that notifies specific apps `Kernel.notify(app,...)`
 
-'''lua  
+```lua  
 Kernel.notify()  
-'''  
+``` 
 
 ```lua
 --new(autoenable)
