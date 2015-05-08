@@ -183,6 +183,11 @@ iface.send("Hello, my name is Karsten"); -- this will send the message from that
 ###### ethernet.attach
 ###### ethernet.detach
 ###### ethernet.send
+###### ethernet.setMAC
+###### ethernet.getMAC
+###### ethernet.receiveAll
+This will elevate all frames, even if the destination mac does not match the nodes mac
+###### ethernet.supportDotQ
 ##### Usage
 ```lua
 local iface = interface.new(...); -- see above on how to create your interface
