@@ -100,7 +100,10 @@ ehook:disable(); -- this will disable event gathering for the whole evenhook, al
 ```
 
 #### Interface
+The interface represents Layer 1 in the TCP/IP reference model.
 The interface is bound to a side, will inject itself into the computers event stack(via eventhook above) and is able to hold listener functions to call, when modem_messages arrive.
+You can create the interface at any time, but (auto)enabling it needs the peripheral to be present.
+The interface will auto-disable, when the peripheral is removed at that side, and auto-enabled, when it's present again after an auto-disable.
 ##### Constructor
 ```lua
 --new(side, hook, auto)
@@ -112,6 +115,10 @@ The interface is bound to a side, will inject itself into the computers event st
 --  (1 return): interface object
 local iface = interface.new("left", hookObj, false);
 ```
+Will raise an error, when no side is provided
+Will raise an error, when no hook is provided
+Will raise an error, when peripheral is not present with active auto-enable
+
 ##### Functions
 ###### interface.enable
 ```lua
@@ -122,6 +129,10 @@ interface.enable(iface);
 --or
 iface:enable();
 ```
+Will raise an error, when no interface is provided
+Will raise an error, when the peripheral is not present at registered side
+Will do nothing, when the interface provided is already enabled
+
 ###### interface.disable
 ```lua
 --disable(iface)
@@ -131,6 +142,9 @@ interface.disable(iface);
 --or
 iface:disable();
 ```
+Will raise an error, when no interface is provided
+Will do nothing, when the interface provided is already disabled
+
 ###### interface.attach
 ```lua
 --attach(iface, func)
@@ -142,6 +156,9 @@ local listenerindex = interface.attach(iface, func);
 --or
 local listenerindex = iface:attach(func);
 ```
+Will raise an error, when no interface is provided
+Will raise an error, when no listener function is provided
+
 ###### interface.detach
 ```lua
 --detach(iface, index)
@@ -152,6 +169,9 @@ interface.detach(iface, listenerindex);
 --or
 iface:detach(listenerindex);
 ```
+Will raise an error, when no interface is provided
+Will raise an error, when the index is not a number
+Will do nothing, if the function at index is already detached
 ###### interface.send
 ```lua
 --send(iface, message)
@@ -161,6 +181,13 @@ iface:detach(listenerindex);
 interface.send(iface, message);
 --or
 iface:send(message);
+```
+The send method will raise an error, if the interface is disabled
+###### interface.getSide
+```lua
+--getSide()
+-- (Summary): a simple get method for the side the interface is allocated to
+-- (1 return): a string containing the peripheral name/(side) of the interface
 ```
 ##### Usage
 ```lua
