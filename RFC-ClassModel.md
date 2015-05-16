@@ -7,15 +7,13 @@ Layer2 in OSI can actually contain multiple(I can think of 3) protocols: PPP, wh
 ### Protocols corresponding to OSI layers:
 
 1. Layer
-  1. Interface (no idea on how to call it since it's not actually a protocol)
+  1. Ethernet
 2. Layer
   1. Ethernet
-  2. PPPoE (which is optional)
-  3. PPP (which also is optional)
 3. Layer
-  1. IPv4
+  1. TCP/IPv4
 4. Layer
-  1. TCP
+  1. TCP/IPv4
   2. UDP
 
 ### Approach
