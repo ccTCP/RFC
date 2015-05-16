@@ -22,7 +22,10 @@ So I thought, we would approach this in a more OOP manner, so each interface and
 
 ### Detailed specifications of how to access the objects
 #### Eventhook
-#### Ethernet @ L1 (depends on Eventhook for event oriented implementation)
-#### Ethernet @ L2 (depends on Ethernet @ L1)
-#### TCP/IP(depends on Ethernet @ L2)
-#### UDP(depends on Ethernet @ L2)
+#### Interface(depends on Eventhook)
+#### Ethernet(depends on Interface)
+#### PPPoE(depends on Ethernet)
+#### PPP(depends on PPPoE)
+#### IPv4(depends on either Ethernet or PPP?)
+#### TCP(depends on IPv4)
+#### UDP(depends on IPv4)
