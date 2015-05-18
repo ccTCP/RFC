@@ -37,3 +37,5 @@ Connection starting:
 local httpconnection = Instance.http.new(address,otherargs)`
 local ethernetconection = Instance.ethernet.new(args)
 ```
+
+httpconnection will perform all the nessessary identifications right in the beggining.
