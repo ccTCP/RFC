@@ -26,3 +26,14 @@ So I thought, we would approach this in a more OOP manner, so each interface and
 #### Ethernet @ L2 (depends on Ethernet @ L1)
 #### TCP/IP(depends on Ethernet @ L2)
 #### UDP(depends on Ethernet @ L2)
+
+I would like to expand on the subject a little bit:
+
+Class initialization:
+`local Instance = ccTCPf.initialize()`
+
+Connection starting:
+```lua
+local httpconnection = Instance.http.new(address,otherargs)`
+local ethernetconection = Instance.ethernet.new(args)
+```
