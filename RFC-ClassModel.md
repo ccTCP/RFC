@@ -34,7 +34,7 @@ Class initialization:
 
 Connection starting:
 ```lua
-local httpconnection = Instance.http.new(address,otherargs)`
+local httpconnection = Instance.http.new(address,otherargs)
 local ethernetconection = Instance.ethernet.new(args)
 ```
 
